@@ -29,6 +29,7 @@ const Line = styled.div`
   width: 100%;
   height: 1px;
   background-color: ${(props) => props.theme.colors.blue};
+  opacity: 0.25;
   z-index: 3;
 `;
 
@@ -36,7 +37,7 @@ const LinksBackground = styled.div`
   grid-column: 5 / 9;
   grid-row: 1;
   width: 100%;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(30px) saturate(125%);
 `;
 
 const LinksContainer = styled.div`
