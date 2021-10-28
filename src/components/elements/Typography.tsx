@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 //Typography
 const HeadingOne = styled.h1`
@@ -70,12 +71,14 @@ const SubHeadingTwo = styled.h6`
   margin-block-end: 0.1em;
 `;
 
-const NavText = styled.div`
+const NavText = styled(Link)`
+  display: block;
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 16px;
   color: ${(props) => props.theme.colors.white};
   letter-spacing: 2.7px;
   text-transform: uppercase;
+  text-decoration: none;
 `;
 
 const BodyText = styled.p`

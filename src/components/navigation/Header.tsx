@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import logo from '../../assets/shared/logo.svg';
 import { NavText } from '../elements/Typography';
+import routes from '../../contexts/Routes';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   position: absolute;
@@ -53,7 +55,44 @@ const LinksContainer = styled.div`
   z-index: 4;
 `;
 
+const InteractiveLink = styled(NavText)`
+  height: 100%;
+  line-height: 64px;
+  position: relative;
+
+  &:hover {
+    &::after {
+      content: '';
+      /* display: block; */
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      width: 100%;
+      height: 1px;
+      opacity: 0.5;
+      background-color: ${(props) => props.theme.colors.blue};
+      transition: all 0.2s ease-in-out;
+    }
+  }
+
+  &.active {
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      width: 100%;
+      height: 1px;
+      opacity: 1;
+      background-color: ${(props) => props.theme.colors.white};
+      transition: all 0.2s ease-in-out;
+    }
+  }
+`;
+
 const Header = (): JSX.Element => {
+  const [activePage, setActivePage] = useState(0);
+
   return (
     <Container>
       <LogoContainer>
@@ -62,10 +101,13 @@ const Header = (): JSX.Element => {
       <Line />
       <LinksBackground />
       <LinksContainer>
-        <NavText>00 home</NavText>
-        <NavText>01 destination</NavText>
-        <NavText>02 crew</NavText>
-        <NavText>03 technology</NavText>
+        {routes.map((route, index) => (
+          // <Link key={index} to={route.path}>
+          <InteractiveLink key={route.page} to={route.path}>
+            {route.page}
+          </InteractiveLink>
+          // </Link>
+        ))}
       </LinksContainer>
     </Container>
   );

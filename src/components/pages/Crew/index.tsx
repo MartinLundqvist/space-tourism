@@ -10,8 +10,8 @@ import {
   SubHeadingTwo,
   NavText,
   BodyText,
-} from '../elements/Typography';
-import backgroundImg from '../../assets/home/background-home-desktop.jpg';
+} from '../../elements/Typography';
+import backgroundImg from '../../../assets/home/background-home-desktop.jpg';
 
 const Background = styled.div`
   position: absolute;
@@ -68,26 +68,19 @@ const Button = styled.button`
   }
 `;
 
-const Home = (): JSX.Element => {
+const Crew = (): JSX.Element => {
   return (
     <Background>
       <Container>
         <FirstSection>
-          <HeadingFive>So, you want to travel to</HeadingFive>
-          <HeadingOne>Space</HeadingOne>
-          <BodyText>
-            Let’s face it; if you want to go to space, you might as well
-            genuinely go to outer space and not hover kind of on the edge of it.
-            Well sit back, and relax because we’ll give you a truly out of this
-            world experience!
-          </BodyText>
+          <HeadingFive>Pick your crew</HeadingFive>
         </FirstSection>
         <SecondSection>
-          <Button>Explore</Button>
+          <HeadingTwo>Text...</HeadingTwo>
         </SecondSection>
       </Container>
     </Background>
   );
 };
 
-export default Home;
+export default Crew;
