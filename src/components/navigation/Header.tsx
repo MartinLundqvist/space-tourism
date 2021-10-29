@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import logo from '../../assets/shared/logo.svg';
 import { NavText } from '../elements/Typography';
 import routes from '../../contexts/Routes';
-import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Container = styled.div`
   position: absolute;
@@ -91,7 +91,7 @@ const InteractiveLink = styled(NavText)`
 `;
 
 const Header = (): JSX.Element => {
-  const [activePage, setActivePage] = useState(0);
+  let location = useLocation();
 
   return (
     <Container>
@@ -103,7 +103,11 @@ const Header = (): JSX.Element => {
       <LinksContainer>
         {routes.map((route, index) => (
           // <Link key={index} to={route.path}>
-          <InteractiveLink key={route.page} to={route.path}>
+          <InteractiveLink
+            key={route.page}
+            to={route.path}
+            className={route.path === location.pathname ? 'active' : ''}
+          >
             {route.page}
           </InteractiveLink>
           // </Link>

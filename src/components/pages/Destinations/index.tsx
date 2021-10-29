@@ -68,7 +68,7 @@ const Button = styled.button`
   }
 `;
 
-const Destination = (): JSX.Element => {
+const Destinations = (): JSX.Element => {
   return (
     <Background>
       <Container>
@@ -83,4 +83,4 @@ const Destination = (): JSX.Element => {
   );
 };
 
-export default Destination;
+export default Destinations;
