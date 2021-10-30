@@ -41,6 +41,10 @@ const HeadingFour = styled.h4`
   margin-block-start: 0.1em;
   margin-block-end: 0.1em;
   font-weight: 400;
+
+  &.span {
+    display: inline-block;
+  }
 `;
 
 const HeadingFive = styled.h5`
@@ -51,6 +55,10 @@ const HeadingFive = styled.h5`
   text-transform: uppercase;
   margin-block-start: 0.1em;
   margin-block-end: 0.1em;
+
+  &.span {
+    display: inline-block;
+  }
 `;
 
 const SubHeadingOne = styled.h6`
@@ -60,6 +68,7 @@ const SubHeadingOne = styled.h6`
   margin-block-start: 0.1em;
   margin-block-end: 0.1em;
   font-weight: 400;
+  text-transform: uppercase;
 `;
 
 const SubHeadingTwo = styled.h6`
