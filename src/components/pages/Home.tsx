@@ -1,18 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  HeadingOne,
-  HeadingTwo,
-  HeadingThree,
-  HeadingFour,
-  HeadingFive,
-  SubHeadingOne,
-  SubHeadingTwo,
-  NavText,
-  BodyText,
-} from '../elements/Typography';
-import backgroundImg from '../../assets/home/background-home-desktop.jpg';
+import { HeadingOne, HeadingFive, BodyText } from '../elements/Typography';
+import desktopImg from '../../assets/home/background-home-desktop.jpg';
+import tabletImg from '../../assets/home/background-home-tablet.jpg';
+import mobileImg from '../../assets/home/background-home-mobile.jpg';
 import { Link } from 'react-router-dom';
+import { Desktop, Tablet, Mobile } from '../elements/Devices';
 
 const Background = styled.div`
   position: absolute;
@@ -27,7 +20,15 @@ const Background = styled.div`
   background-size: cover;
 
   //Desktop
-  background-image: url('${backgroundImg}');
+  background-image: url('${desktopImg}');
+
+  &.tablet {
+    background-image: url('${tabletImg}');
+  }
+
+  &.mobile {
+    background-image: url('${mobileImg}');
+  }
 `;
 
 const Container = styled.div`
@@ -37,12 +38,30 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 100px 1fr 1fr 100px;
   grid-template-rows: 300px auto 40px;
+
+  &.tablet {
+    grid-template-columns: 100px 1fr 100px;
+    grid-template-rows: 120px auto auto 40px;
+  }
+
+  &.mobile {
+    grid-template-columns: 20px 1fr 20px;
+    grid-template-rows: 80px auto auto 40px;
+  }
 `;
 
 const FirstSection = styled.div`
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   align-self: center;
+
+  &.tablet {
+    text-align: center;
+  }
+
+  &.mobile {
+    text-align: center;
+  }
 `;
 
 const SecondSection = styled.div`
@@ -50,6 +69,16 @@ const SecondSection = styled.div`
   grid-row: 2 / 3;
   align-self: center;
   justify-self: center;
+
+  &.tablet {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+  }
+
+  &.mobile {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+  }
 `;
 
 const Button = styled.button`
@@ -64,33 +93,96 @@ const Button = styled.button`
   outline: solid 0px black;
   transition: outline 0.3s ease-in-out;
 
+  &.tablet {
+    height: 242px;
+    width: 242px;
+  }
+
+  &.mobile {
+    height: 150px;
+    width: 150px;
+  }
+
   &:hover {
     outline-width: 88px;
     cursor: pointer;
+
+    &.tablet {
+      outline-width: 44px;
+    }
+    &.mobile {
+      outline-width: 22px;
+    }
   }
 `;
 
 const Home = (): JSX.Element => {
   return (
-    <Background>
-      <Container>
-        <FirstSection>
-          <HeadingFive>So, you want to travel to</HeadingFive>
-          <HeadingOne>Space</HeadingOne>
-          <BodyText>
-            Let’s face it; if you want to go to space, you might as well
-            genuinely go to outer space and not hover kind of on the edge of it.
-            Well sit back, and relax because we’ll give you a truly out of this
-            world experience!
-          </BodyText>
-        </FirstSection>
-        <SecondSection>
-          <Link to='/destinations'>
-            <Button>Explore</Button>
-          </Link>
-        </SecondSection>
-      </Container>
-    </Background>
+    <React.Fragment>
+      <Desktop>
+        <Background>
+          <Container>
+            <FirstSection>
+              <HeadingFive>So, you want to travel to</HeadingFive>
+              <HeadingOne>Space</HeadingOne>
+              <BodyText>
+                Let’s face it; if you want to go to space, you might as well
+                genuinely go to outer space and not hover kind of on the edge of
+                it. Well sit back, and relax because we’ll give you a truly out
+                of this world experience!
+              </BodyText>
+            </FirstSection>
+            <SecondSection>
+              <Link to='/destinations'>
+                <Button>Explore</Button>
+              </Link>
+            </SecondSection>
+          </Container>
+        </Background>
+      </Desktop>
+      <Tablet>
+        <Background className='tablet'>
+          <Container className='tablet'>
+            <FirstSection className='tablet'>
+              <HeadingFive>So, you want to travel to</HeadingFive>
+              <HeadingOne>Space</HeadingOne>
+              <BodyText>
+                Let’s face it; if you want to go to space, you might as well
+                genuinely go to outer space and not hover kind of on the edge of
+                it. Well sit back, and relax because we’ll give you a truly out
+                of this world experience!
+              </BodyText>
+            </FirstSection>
+            <SecondSection className='tablet'>
+              <Link to='/destinations'>
+                <Button className='tablet'>Explore</Button>
+              </Link>
+            </SecondSection>
+          </Container>
+        </Background>
+      </Tablet>
+      <Mobile>
+        <Background className='mobile'>
+          <Container className='mobile'>
+            <FirstSection className='mobile'>
+              <HeadingFive>So, you want to travel to</HeadingFive>
+              <HeadingOne>Space</HeadingOne>
+              <BodyText>
+                Let’s face it; if you want to go to space, you might as well
+                genuinely go to outer space and not hover kind of on the edge of
+                it. Well sit back, and relax because we’ll give you a truly out
+                of this world experience!
+              </BodyText>
+            </FirstSection>
+            <SecondSection className='mobile'>
+              <Link to='/destinations'>
+                <Button className='mobile'>Explore</Button>
+              </Link>
+            </SecondSection>
+          </Container>
+        </Background>
+      </Mobile>
+    </React.Fragment>
   );
 };
 
