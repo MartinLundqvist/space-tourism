@@ -12,6 +12,7 @@ import {
   BodyText,
 } from '../elements/Typography';
 import backgroundImg from '../../assets/home/background-home-desktop.jpg';
+import { Link } from 'react-router-dom';
 
 const Background = styled.div`
   position: absolute;
@@ -65,6 +66,7 @@ const Button = styled.button`
 
   &:hover {
     outline-width: 88px;
+    cursor: pointer;
   }
 `;
 
@@ -83,7 +85,9 @@ const Home = (): JSX.Element => {
           </BodyText>
         </FirstSection>
         <SecondSection>
-          <Button>Explore</Button>
+          <Link to='/destinations'>
+            <Button>Explore</Button>
+          </Link>
         </SecondSection>
       </Container>
     </Background>

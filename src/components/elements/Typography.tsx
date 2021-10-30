@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 //Typography
 const HeadingOne = styled.h1`
@@ -71,7 +71,7 @@ const SubHeadingTwo = styled.h6`
   margin-block-end: 0.1em;
 `;
 
-const NavText = styled(Link)`
+const NavText = styled(NavLink)`
   display: block;
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 16px;

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import logo from '../../assets/shared/logo.svg';
+import buttonOpen from '../../assets/shared/icon-hamburger.svg';
+import buttonClose from '../../assets/shared/icon-close.svg';
 import { NavText } from '../elements/Typography';
 import routes from '../../contexts/Routes';
-import { useLocation } from 'react-router-dom';
+import { Desktop, Mobile, Tablet } from '../elements/Devices';
 
 const Container = styled.div`
   position: absolute;
@@ -14,14 +16,30 @@ const Container = styled.div`
   height: 64px;
   /* background-color: black; */
   z-index: 2;
+
+  &.mobile {
+    grid-template-columns: 20px 60px auto 60px 20px;
+    top: 0;
+  }
 `;
 
 const LogoContainer = styled.div`
+  position: relative;
   grid-column: 2 / 3;
   justify-self: center;
   align-self: center;
   display: block;
   height: 48px;
+  width: 48px;
+  color: white;
+  background-image: url('${logo}');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &.mobile {
+    height: 40px;
+    width: 40px;
+  }
 `;
 
 const Line = styled.div`
@@ -58,7 +76,13 @@ const LinksContainer = styled.div`
 const InteractiveLink = styled(NavText)`
   height: 100%;
   line-height: 64px;
+  margin-left: 10px;
+  margin-right: 10px;
   position: relative;
+
+  &.mobile {
+    height: 64px;
+  }
 
   &:hover {
     &::after {
@@ -90,30 +114,126 @@ const InteractiveLink = styled(NavText)`
   }
 `;
 
+const MenuButton = styled.div`
+  grid-column: 4 / 5;
+  justify-self: center;
+  align-self: center;
+  width: 28px;
+  height: 24px;
+  background-image: url('${buttonOpen}');
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  z-index: 4;
+  transition: all 0.2s ease-in-out;
+
+  &.close {
+    width: 24px;
+    height: 24px;
+    background-image: url('${buttonClose}');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+`;
+
+const MenuContainer = styled.div`
+  position: absolute;
+  right: 0;
+  width: 254px;
+  height: 100vh;
+  backdrop-filter: blur(30px) saturate(125%);
+
+  &.invisible {
+    display: none;
+  }
+`;
+
+const MenuLinksContainer = styled.div`
+  position: relative;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: flex-start;
+  row-gap: 20px;
+`;
+
 const Header = (): JSX.Element => {
-  let location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const menuClickHandler = () => {
+    setMenuOpen((prevState) => !prevState);
+  };
+
+  useEffect(() => {
+    console.log('Menu open? ' + menuOpen);
+  }, [menuOpen]);
 
   return (
-    <Container>
-      <LogoContainer>
-        <img src={logo} />
-      </LogoContainer>
-      <Line />
-      <LinksBackground />
-      <LinksContainer>
-        {routes.map((route, index) => (
-          // <Link key={index} to={route.path}>
-          <InteractiveLink
-            key={route.page}
-            to={route.path}
-            className={route.path === location.pathname ? 'active' : ''}
-          >
-            {route.page}
-          </InteractiveLink>
-          // </Link>
-        ))}
-      </LinksContainer>
-    </Container>
+    <React.Fragment>
+      <Desktop>
+        <Container>
+          <LogoContainer />
+          <Line />
+          <LinksBackground />
+          <LinksContainer>
+            {routes.map((route, index) => (
+              <InteractiveLink
+                exact={route.exact}
+                key={route.page}
+                to={route.path}
+                activeClassName='active'
+              >
+                0{index} {route.page}
+              </InteractiveLink>
+            ))}
+          </LinksContainer>
+        </Container>
+      </Desktop>
+      <Tablet>
+        <Container>
+          <LogoContainer />
+          <LinksBackground />
+          <LinksContainer>
+            {routes.map((route) => (
+              <InteractiveLink
+                exact={route.exact}
+                key={route.page}
+                to={route.path}
+                activeClassName='active'
+              >
+                {route.page}
+              </InteractiveLink>
+            ))}
+          </LinksContainer>
+        </Container>
+      </Tablet>
+      <Mobile>
+        <Container className='mobile'>
+          <LogoContainer className='mobile' />
+          <MenuButton
+            className={menuOpen ? 'close' : ''}
+            onClick={menuClickHandler}
+          />
+          <MenuContainer className={menuOpen ? '' : 'invisible'}>
+            <MenuLinksContainer>
+              {routes.map((route) => (
+                <InteractiveLink
+                  exact={route.exact}
+                  key={route.page}
+                  to={route.path}
+                  activeClassName='active'
+                  className='mobile'
+                >
+                  {route.page}
+                </InteractiveLink>
+              ))}
+            </MenuLinksContainer>
+          </MenuContainer>
+        </Container>
+      </Mobile>
+    </React.Fragment>
   );
 };
 

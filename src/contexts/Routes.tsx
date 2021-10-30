@@ -5,25 +5,25 @@ import Crew from '../components/pages/Crew';
 
 const routes = [
   {
-    page: '00 home',
+    page: 'home',
     path: '/',
     exact: true,
     component: Home,
   },
   {
-    page: '01 destinations',
+    page: 'destinations',
     path: '/destinations',
     exact: false,
     component: Destinations,
   },
   {
-    page: '02 crew',
+    page: 'crew',
     path: '/crew',
     exact: false,
     component: Crew,
   },
   {
-    page: '03 technology',
+    page: 'technology',
     path: '/technology',
     exact: false,
     component: Technology,
