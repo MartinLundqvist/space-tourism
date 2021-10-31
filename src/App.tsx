@@ -1,9 +1,5 @@
 import React from 'react';
-// import Home from './components/pages/Home';
 import Header from './components/navigation/Header';
-// import Technology from './components/pages/Technology';
-// import Destinations from './components/pages/Destinations';
-// import Crew from './components/pages/Crew';
 import routes from './contexts/Routes';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
