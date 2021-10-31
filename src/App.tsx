@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './components/navigation/Header';
+import Footer from './components/navigation/Footer';
 import routes from './contexts/Routes';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -15,6 +16,7 @@ const App = (): JSX.Element => {
             </Route>
           ))}
         </Switch>
+        <Footer />
       </Router>
     </React.Fragment>
   );
