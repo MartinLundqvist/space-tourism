@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { HeadingOne, HeadingFive, BodyText } from '../elements/Typography';
 import desktopImg from '../../assets/home/background-home-desktop.jpg';
 import tabletImg from '../../assets/home/background-home-tablet.jpg';
 import mobileImg from '../../assets/home/background-home-mobile.jpg';
 import { Link } from 'react-router-dom';
-import { Desktop, Tablet, Mobile } from '../elements/Devices';
+import {
+  useDesktopQuery,
+  useTabletQuery,
+  useMobileQuery,
+} from '../../utils/useDeviceSizes';
 
 const Background = styled.div`
   position: absolute;
@@ -117,72 +121,37 @@ const Button = styled.button`
 `;
 
 const Home = (): JSX.Element => {
+  const isDesktop = useDesktopQuery();
+  const isTablet = useTabletQuery();
+  const isMobile = useMobileQuery();
+  const [className, setClassName] = useState('');
+
+  useEffect(() => {
+    isDesktop && setClassName('');
+    isTablet && setClassName('tablet');
+    isMobile && setClassName('mobile');
+  }, [isDesktop, isTablet, isMobile]);
+
   return (
-    <React.Fragment>
-      <Desktop>
-        <Background>
-          <Container>
-            <FirstSection>
-              <HeadingFive>So, you want to travel to</HeadingFive>
-              <HeadingOne>Space</HeadingOne>
-              <BodyText>
-                Let’s face it; if you want to go to space, you might as well
-                genuinely go to outer space and not hover kind of on the edge of
-                it. Well sit back, and relax because we’ll give you a truly out
-                of this world experience!
-              </BodyText>
-            </FirstSection>
-            <SecondSection>
-              <Link to='/destinations'>
-                <Button>Explore</Button>
-              </Link>
-            </SecondSection>
-          </Container>
-        </Background>
-      </Desktop>
-      <Tablet>
-        <Background className='tablet'>
-          <Container className='tablet'>
-            <FirstSection className='tablet'>
-              <HeadingFive>So, you want to travel to</HeadingFive>
-              <HeadingOne>Space</HeadingOne>
-              <BodyText>
-                Let’s face it; if you want to go to space, you might as well
-                genuinely go to outer space and not hover kind of on the edge of
-                it. Well sit back, and relax because we’ll give you a truly out
-                of this world experience!
-              </BodyText>
-            </FirstSection>
-            <SecondSection className='tablet'>
-              <Link to='/destinations'>
-                <Button className='tablet'>Explore</Button>
-              </Link>
-            </SecondSection>
-          </Container>
-        </Background>
-      </Tablet>
-      <Mobile>
-        <Background className='mobile'>
-          <Container className='mobile'>
-            <FirstSection className='mobile'>
-              <HeadingFive>So, you want to travel to</HeadingFive>
-              <HeadingOne>Space</HeadingOne>
-              <BodyText>
-                Let’s face it; if you want to go to space, you might as well
-                genuinely go to outer space and not hover kind of on the edge of
-                it. Well sit back, and relax because we’ll give you a truly out
-                of this world experience!
-              </BodyText>
-            </FirstSection>
-            <SecondSection className='mobile'>
-              <Link to='/destinations'>
-                <Button className='mobile'>Explore</Button>
-              </Link>
-            </SecondSection>
-          </Container>
-        </Background>
-      </Mobile>
-    </React.Fragment>
+    <Background className={className}>
+      <Container className={className}>
+        <FirstSection className={className}>
+          <HeadingFive>So, you want to travel to</HeadingFive>
+          <HeadingOne>Space</HeadingOne>
+          <BodyText>
+            Let’s face it; if you want to go to space, you might as well
+            genuinely go to outer space and not hover kind of on the edge of it.
+            Well sit back, and relax because we’ll give you a truly out of this
+            world experience!
+          </BodyText>
+        </FirstSection>
+        <SecondSection className={className}>
+          <Link to='/destinations'>
+            <Button>Explore</Button>
+          </Link>
+        </SecondSection>
+      </Container>
+    </Background>
   );
 };
 

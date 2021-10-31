@@ -204,16 +204,26 @@ const DestinationDetails = styled.div`
 `;
 
 const DestinationDetailsContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: row;
+
+  &.tablet {
+    flex-direction: row;
+  }
+
+  &.mobile {
+    flex-direction: column;
+  }
 `;
 
 const DestinationDetailsTravel = styled.div`
-  grid-column: 2 / 3;
+  height: 100%;
+  width: 100%;
 `;
 
 const DestinationDetailsDistance = styled.div`
-  grid-column: 1 / 2;
+  height: 100%;
+  width: 100%;
 `;
 
 const Destinations = (): JSX.Element => {
@@ -264,7 +274,7 @@ const Destinations = (): JSX.Element => {
                   <HeadingTwo>{destination.name}</HeadingTwo>
                   <BodyText>{destination.description}</BodyText>
                   <Line />
-                  <DestinationDetailsContainer>
+                  <DestinationDetailsContainer className={className}>
                     <DestinationDetailsDistance>
                       <SubHeadingTwo>Avg. distance</SubHeadingTwo>
                       <SubHeadingOne>{destination.distance}</SubHeadingOne>
