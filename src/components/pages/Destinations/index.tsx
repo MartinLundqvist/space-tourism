@@ -20,7 +20,7 @@ import {
   useTabletQuery,
   useMobileQuery,
 } from '../../../utils/useDeviceSizes';
-import { useRouteMatch, Switch, Route } from 'react-router-dom';
+import { useRouteMatch, Switch, Route, Redirect } from 'react-router-dom';
 
 const Background = styled.div`
   position: absolute;
@@ -264,6 +264,12 @@ const Destinations = (): JSX.Element => {
                 <img src={destination.image} />
               </Route>
             ))}
+            {/* This redirect could be anywhere... */}
+            <Redirect
+              from={`${url}/`}
+              to={`${url}${destinations[0].path}`}
+              exact
+            />
           </Switch>
         </DestinationImage>
         <DestinationDetails className={className}>

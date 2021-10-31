@@ -147,7 +147,7 @@ const Home = (): JSX.Element => {
         </FirstSection>
         <SecondSection className={className}>
           <Link to='/destinations'>
-            <Button>Explore</Button>
+            <Button className={className}>Explore</Button>
           </Link>
         </SecondSection>
       </Container>
