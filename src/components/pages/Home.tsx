@@ -13,7 +13,6 @@ import {
 
 const Background = styled.div`
   position: absolute;
-  /* display: flex; */
   top: 0;
   left: 0;
   height: 100vh;
@@ -91,7 +90,6 @@ const Button = styled.button`
   border-radius: 50%;
   text-transform: uppercase;
   font-family: 'Barlow Condensed', sans-serif;
-  /* font-size: 32px; */
   font-size: clamp(1rem, 5vw, 32px);
   border: none;
   box-sizing: content-box;

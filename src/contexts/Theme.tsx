@@ -5,15 +5,6 @@ const Theme = {
     white: '#FFFFFF',
     white50: '#FFFFFF50',
   },
-
-  dimensions: {},
-
-  // Refers to min-width > X condition
-  mediaThresholds: {
-    desktop: '768px',
-    tablet: '481px',
-    mobile: '320px',
-  },
 };
 
 export type ThemeType = typeof Theme;

@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
-  HeadingOne,
-  HeadingTwo,
   HeadingThree,
   HeadingFour,
   HeadingFive,
-  SubHeadingOne,
-  SubHeadingTwo,
   NavText,
   BodyText,
-} from '../../elements/Typography';
-import desktopImg from '../../../assets/technology/background-technology-desktop.jpg';
-import tabletImg from '../../../assets/technology/background-technology-tablet.jpg';
-import mobileImg from '../../../assets/technology/background-technology-mobile.jpg';
-import { technology } from '../../../data';
+} from '../elements/Typography';
+import desktopImg from '../../assets/technology/background-technology-desktop.jpg';
+import tabletImg from '../../assets/technology/background-technology-tablet.jpg';
+import mobileImg from '../../assets/technology/background-technology-mobile.jpg';
+import { technology } from '../../data';
 import {
   useDesktopQuery,
   useTabletQuery,
   useMobileQuery,
-} from '../../../utils/useDeviceSizes';
+} from '../../utils/useDeviceSizes';
 import {
   useRouteMatch,
   Switch,
@@ -30,7 +26,6 @@ import {
 
 const Background = styled.div`
   position: absolute;
-  /* display: flex; */
   top: 0;
   left: 0;
   height: 100vh;
@@ -155,20 +150,10 @@ const TechImage = styled.div`
   grid-row: 3 / 4;
   align-self: center;
   justify-self: end;
-  /* align-content: start; */
-  /* justify-content: start; */
-  /* display: flex; */
-  /* width: 100%; */
-  /* height: auto; */
 
   img {
     max-width: 100%;
     height: auto;
-    /* height: auto; */
-    /* max-height: 100%; */
-    /* max-width: 100%; */
-    /* max-height: 100%; */
-    /* max-width: 100%; */
   }
 
   &.tablet {
@@ -177,12 +162,6 @@ const TechImage = styled.div`
     display: flex;
     width: 100%;
     max-height: 90%;
-    /* justify-self: center;   */
-    /* align-content: flex-start; */
-    /* justify-content: flex-start; */
-    /* height: auto; */
-    /* width: 100%; */
-    /* overflow-y: hidden; */
 
     img {
       width: 100%;

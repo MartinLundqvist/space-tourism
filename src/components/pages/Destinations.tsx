@@ -10,21 +10,20 @@ import {
   SubHeadingTwo,
   NavText,
   BodyText,
-} from '../../elements/Typography';
-import desktopImg from '../../../assets/destination/background-destination-desktop.jpg';
-import tabletImg from '../../../assets/destination/background-destination-tablet.jpg';
-import mobileImg from '../../../assets/destination/background-destination-mobile.jpg';
-import { destinations } from '../../../data';
+} from '../elements/Typography';
+import desktopImg from '../../assets/destination/background-destination-desktop.jpg';
+import tabletImg from '../../assets/destination/background-destination-tablet.jpg';
+import mobileImg from '../../assets/destination/background-destination-mobile.jpg';
+import { destinations } from '../../data';
 import {
   useDesktopQuery,
   useTabletQuery,
   useMobileQuery,
-} from '../../../utils/useDeviceSizes';
+} from '../../utils/useDeviceSizes';
 import { useRouteMatch, Switch, Route, Redirect } from 'react-router-dom';
 
 const Background = styled.div`
   position: absolute;
-  /* display: flex; */
   top: 0;
   left: 0;
   height: 100vh;
@@ -118,7 +117,6 @@ const InteractiveLink = styled(NavText)`
   &:hover {
     &::after {
       content: '';
-      /* display: block; */
       position: absolute;
       bottom: 0px;
       right: 0px;

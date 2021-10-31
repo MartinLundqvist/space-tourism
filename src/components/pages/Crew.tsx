@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
-  HeadingOne,
-  HeadingTwo,
   HeadingThree,
   HeadingFour,
   HeadingFive,
-  SubHeadingOne,
-  SubHeadingTwo,
-  NavText,
   BodyText,
-} from '../../elements/Typography';
-import desktopImg from '../../../assets/crew/background-crew-desktop.jpg';
-import tabletImg from '../../../assets/crew/background-crew-tablet.jpg';
-import mobileImg from '../../../assets/crew/background-crew-mobile.jpg';
-import { crew } from '../../../data';
+} from '../elements/Typography';
+import desktopImg from '../../assets/crew/background-crew-desktop.jpg';
+import tabletImg from '../../assets/crew/background-crew-tablet.jpg';
+import mobileImg from '../../assets/crew/background-crew-mobile.jpg';
+import { crew } from '../../data';
 import {
   useDesktopQuery,
   useTabletQuery,
   useMobileQuery,
-} from '../../../utils/useDeviceSizes';
+} from '../../utils/useDeviceSizes';
 import {
   useRouteMatch,
   Switch,

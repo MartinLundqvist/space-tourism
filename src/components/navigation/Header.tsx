@@ -14,7 +14,6 @@ const Container = styled.div`
   top: 40px;
   width: 100vw;
   height: 64px;
-  /* background-color: black; */
   z-index: 2;
 
   &.mobile {
@@ -81,7 +80,9 @@ const InteractiveLink = styled(NavText)`
   position: relative;
 
   &.mobile {
-    height: 64px;
+    height: 48px;
+    width: 100%;
+    text-align: center;
   }
 
   &:hover {
@@ -97,6 +98,14 @@ const InteractiveLink = styled(NavText)`
       background-color: ${(props) => props.theme.colors.blue};
       transition: all 0.2s ease-in-out;
     }
+
+    &.mobile {
+      &::after {
+        width: 1px;
+        height: 100%;
+        right: 0px;
+      }
+    }
   }
 
   &.active {
@@ -110,6 +119,14 @@ const InteractiveLink = styled(NavText)`
       opacity: 1;
       background-color: ${(props) => props.theme.colors.white};
       transition: all 0.2s ease-in-out;
+    }
+
+    &.mobile {
+      &::after {
+        width: 1px;
+        height: 100%;
+        right: 0px;
+      }
     }
   }
 `;
