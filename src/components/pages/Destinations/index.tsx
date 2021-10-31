@@ -14,7 +14,7 @@ import {
 import desktopImg from '../../../assets/destination/background-destination-desktop.jpg';
 import tabletImg from '../../../assets/destination/background-destination-tablet.jpg';
 import mobileImg from '../../../assets/destination/background-destination-mobile.jpg';
-import destinations from './destinations';
+import { destinations } from '../../../data';
 import {
   useDesktopQuery,
   useTabletQuery,

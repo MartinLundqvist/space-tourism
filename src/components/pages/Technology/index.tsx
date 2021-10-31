@@ -14,7 +14,7 @@ import {
 import desktopImg from '../../../assets/technology/background-technology-desktop.jpg';
 import tabletImg from '../../../assets/technology/background-technology-tablet.jpg';
 import mobileImg from '../../../assets/technology/background-technology-mobile.jpg';
-import technology from './technology';
+import { technology } from '../../../data';
 import {
   useDesktopQuery,
   useTabletQuery,

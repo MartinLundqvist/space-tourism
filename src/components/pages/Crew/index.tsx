@@ -14,7 +14,7 @@ import {
 import desktopImg from '../../../assets/crew/background-crew-desktop.jpg';
 import tabletImg from '../../../assets/crew/background-crew-tablet.jpg';
 import mobileImg from '../../../assets/crew/background-crew-mobile.jpg';
-import crew from './crew';
+import { crew } from '../../../data';
 import {
   useDesktopQuery,
   useTabletQuery,
