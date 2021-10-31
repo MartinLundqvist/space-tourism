@@ -3,6 +3,7 @@ const Theme = {
     dark: '#0B0D17',
     blue: '#D0D6F9',
     white: '#FFFFFF',
+    white50: '#FFFFFF50',
   },
 
   dimensions: {},

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
   HeadingOne,
@@ -11,7 +11,22 @@ import {
   NavText,
   BodyText,
 } from '../../elements/Typography';
-import backgroundImg from '../../../assets/home/background-home-desktop.jpg';
+import desktopImg from '../../../assets/technology/background-technology-desktop.jpg';
+import tabletImg from '../../../assets/technology/background-technology-tablet.jpg';
+import mobileImg from '../../../assets/technology/background-technology-mobile.jpg';
+import technology from './technology';
+import {
+  useDesktopQuery,
+  useTabletQuery,
+  useMobileQuery,
+} from '../../../utils/useDeviceSizes';
+import {
+  useRouteMatch,
+  Switch,
+  Route,
+  Redirect,
+  NavLink,
+} from 'react-router-dom';
 
 const Background = styled.div`
   position: absolute;
@@ -26,7 +41,15 @@ const Background = styled.div`
   background-size: cover;
 
   //Desktop
-  background-image: url('${backgroundImg}');
+  background-image: url('${desktopImg}');
+
+  &.tablet {
+    background-image: url('${tabletImg}');
+  }
+
+  &.mobile {
+    background-image: url('${mobileImg}');
+  }
 `;
 
 const Container = styled.div`
@@ -34,50 +57,236 @@ const Container = styled.div`
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 100px 1fr 1fr 100px;
-  grid-template-rows: 300px auto 40px;
+  grid-template-columns: 100px 100px 1fr 5px 1fr 100px;
+  grid-template-rows: 150px 50px 1fr 40px;
+
+  &.tablet {
+    grid-template-columns: 100px 1fr 100px;
+    grid-template-rows: 120px 50px minmax(0, 1.1fr) 60px minmax(0, 0.9fr) 40px;
+  }
+
+  &.mobile {
+    grid-template-columns: 20px 1fr 20px;
+    grid-template-rows: 80px 50px minmax(0, 1.1fr) 60px minmax(0, 0.9fr) 40px;
+  }
 `;
 
-const FirstSection = styled.div`
-  grid-column: 2 / 3;
+const Title = styled.div`
+  grid-column: 2 / 5;
   grid-row: 2 / 3;
   align-self: center;
+  text-align: start;
+
+  &.tablet {
+    text-align: start;
+  }
+
+  &.mobile {
+    text-align: start;
+  }
 `;
 
-const SecondSection = styled.div`
-  grid-column: 3 / 4;
-  grid-row: 2 / 3;
+const TechNavigation = styled.div`
+  grid-column: 2 / 3;
+  grid-row: 3/ 4;
   align-self: center;
   justify-self: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-items: center;
+  align-items: center;
+  justify-content: space-around;
+
+  &.tablet {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+
+  &.mobile {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
 `;
 
-const Button = styled.button`
-  height: 274px;
-  width: 274px;
+const InteractiveLink = styled(NavText)`
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
-  text-transform: uppercase;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 32px;
-  border: none;
-  box-sizing: content-box;
-  outline: solid 0px black;
-  transition: outline 0.3s ease-in-out;
+  border: 1px solid ${(props) => props.theme.colors.white50};
+  background-color: transparent;
+  position: relative;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 80px;
+  color: ${(props) => props.theme.colors.white};
+
+  &.tablet {
+    height: 58px;
+    width: 58px;
+    font-size: 1.5rem;
+    line-height: 58px;
+  }
+
+  &.mobile {
+    height: 40px;
+    width: 40px;
+    font-size: 1.2rem;
+    line-height: 40px;
+  }
 
   &:hover {
-    outline-width: 88px;
+    border: 1px solid ${(props) => props.theme.colors.white};
+  }
+
+  &.active {
+    background-color: ${(props) => props.theme.colors.white};
+    color: ${(props) => props.theme.colors.dark};
+  }
+`;
+
+const TechImage = styled.div`
+  grid-column: 5 / 7;
+  grid-row: 3 / 4;
+  align-self: center;
+  justify-self: end;
+  /* align-content: start; */
+  /* justify-content: start; */
+  /* display: flex; */
+  /* width: 100%; */
+  /* height: auto; */
+
+  img {
+    max-width: 100%;
+    height: auto;
+    /* height: auto; */
+    /* max-height: 100%; */
+    /* max-width: 100%; */
+    /* max-height: 100%; */
+    /* max-width: 100%; */
+  }
+
+  &.tablet {
+    grid-column: 1 / 5;
+    grid-row: 3 / 4;
+    display: flex;
+    width: 100%;
+    max-height: 90%;
+    /* justify-self: center;   */
+    /* align-content: flex-start; */
+    /* justify-content: flex-start; */
+    /* height: auto; */
+    /* width: 100%; */
+    /* overflow-y: hidden; */
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &.mobile {
+    grid-column: 1 / 5;
+    grid-row: 3 / 4;
+    display: flex;
+    width: 100%;
+    max-height: 90%;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+`;
+
+const TechDetails = styled.div`
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+  align-self: center;
+  justify-self: center;
+  margin-left: 2rem;
+
+  &.tablet {
+    grid-column: 2 / 3;
+    grid-row: 5 / 6;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  &.mobile {
+    grid-column: 2 / 3;
+    grid-row: 5 / 6;
+    text-align: center;
+    margin-left: 0;
   }
 `;
 
 const Technology = (): JSX.Element => {
+  const { path, url } = useRouteMatch();
+  const isDesktop = useDesktopQuery();
+  const isTablet = useTabletQuery();
+  const isMobile = useMobileQuery();
+  const [className, setClassName] = useState('');
+
+  useEffect(() => {
+    isDesktop && setClassName('');
+    isTablet && setClassName('tablet');
+    isMobile && setClassName('mobile');
+  }, [isDesktop, isTablet, isMobile]);
+
   return (
-    <Background>
-      <Container>
-        <FirstSection>
-          <HeadingFive>Pick your technology</HeadingFive>
-        </FirstSection>
-        <SecondSection>
-          <HeadingTwo>Text...</HeadingTwo>
-        </SecondSection>
+    <Background className={className}>
+      <Container className={className}>
+        <Title className={className}>
+          <HeadingFive className='span'>03</HeadingFive>
+          {'  '}
+          <HeadingFour className='span'>Space launch 101</HeadingFour>
+        </Title>
+        <TechNavigation className={className}>
+          {technology.map((item, index) => (
+            <InteractiveLink
+              key={item.name}
+              to={`${url}/technology${index}`}
+              className={className}
+            >
+              {index + 1}
+            </InteractiveLink>
+          ))}
+        </TechNavigation>
+        <TechImage className={className}>
+          <Switch>
+            {technology.map((item, index) => (
+              <Route
+                key={item.images.portrait}
+                path={`${url}/technology${index}`}
+              >
+                <img
+                  src={isDesktop ? item.images.portrait : item.images.landscape}
+                />
+              </Route>
+            ))}
+            {/* This redirect could be anywhere... */}
+            <Redirect from={`${url}/`} to={`${url}/technology0`} exact />
+          </Switch>
+        </TechImage>
+        <TechDetails className={className}>
+          <Switch>
+            {technology.map((item, index) => (
+              <Route key={item.name} path={`${url}/technology${index}`}>
+                <React.Fragment>
+                  <HeadingFive>The terminology...</HeadingFive>
+                  <HeadingThree>{item.name}</HeadingThree>
+                  <BodyText>{item.description}</BodyText>
+                </React.Fragment>
+              </Route>
+            ))}
+          </Switch>
+        </TechDetails>
       </Container>
     </Background>
   );
