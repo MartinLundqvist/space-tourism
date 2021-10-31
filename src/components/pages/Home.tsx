@@ -91,7 +91,8 @@ const Button = styled.button`
   border-radius: 50%;
   text-transform: uppercase;
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 32px;
+  /* font-size: 32px; */
+  font-size: clamp(1rem, 5vw, 32px);
   border: none;
   box-sizing: content-box;
   outline: solid 0px black;
