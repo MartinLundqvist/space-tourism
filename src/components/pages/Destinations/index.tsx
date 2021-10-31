@@ -251,7 +251,7 @@ const Destinations = (): JSX.Element => {
           {destinations.map((destination, index) => (
             <InteractiveLink
               key={destination.name}
-              to={`${url}${destination.path}`}
+              to={`${url}/destination${index}`}
             >
               {destination.name}
             </InteractiveLink>
@@ -259,23 +259,22 @@ const Destinations = (): JSX.Element => {
         </DestinationNavigation>
         <DestinationImage className={className}>
           <Switch>
-            {destinations.map((destination) => (
-              <Route key={destination.image} path={`${url}${destination.path}`}>
-                <img src={destination.image} />
+            {destinations.map((destination, index) => (
+              <Route
+                key={destination.images.png}
+                path={`${url}/destination${index}`}
+              >
+                <img src={destination.images.png} />
               </Route>
             ))}
             {/* This redirect could be anywhere... */}
-            <Redirect
-              from={`${url}/`}
-              to={`${url}${destinations[0].path}`}
-              exact
-            />
+            <Redirect from={`${url}/`} to={`${url}/destination0`} exact />
           </Switch>
         </DestinationImage>
         <DestinationDetails className={className}>
           <Switch>
-            {destinations.map((destination) => (
-              <Route key={destination.name} path={`${url}${destination.path}`}>
+            {destinations.map((destination, index) => (
+              <Route key={destination.name} path={`${url}/destination${index}`}>
                 <React.Fragment>
                   <HeadingTwo>{destination.name}</HeadingTwo>
                   <BodyText>{destination.description}</BodyText>
