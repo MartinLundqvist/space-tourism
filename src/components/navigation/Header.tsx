@@ -166,10 +166,6 @@ const Header = (): JSX.Element => {
     setMenuOpen((prevState) => !prevState);
   };
 
-  useEffect(() => {
-    console.log('Menu open? ' + menuOpen);
-  }, [menuOpen]);
-
   return (
     <React.Fragment>
       <Desktop>

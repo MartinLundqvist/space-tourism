@@ -78,6 +78,7 @@ const SubHeadingTwo = styled.h6`
   letter-spacing: 2.35px;
   margin-block-start: 0.1em;
   margin-block-end: 0.1em;
+  text-transform: uppercase;
 `;
 
 const NavText = styled(NavLink)`

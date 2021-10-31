@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
   HeadingOne,
@@ -15,8 +15,11 @@ import desktopImg from '../../../assets/destination/background-destination-deskt
 import tabletImg from '../../../assets/destination/background-destination-tablet.jpg';
 import mobileImg from '../../../assets/destination/background-destination-mobile.jpg';
 import destinations from './destinations';
-
-import moonImg from '../../../assets/destination/image-moon.png';
+import {
+  useDesktopQuery,
+  useTabletQuery,
+  useMobileQuery,
+} from '../../../utils/useDeviceSizes';
 import { useRouteMatch, Switch, Route } from 'react-router-dom';
 
 const Background = styled.div`
@@ -49,16 +52,16 @@ const Container = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 100px 1fr 100px 1fr 100px;
-  grid-template-rows: 150px 50px 50px auto 40px;
+  grid-template-rows: 150px 50px 50px 1fr 40px;
 
   &.tablet {
     grid-template-columns: 100px 1fr 100px;
-    grid-template-rows: 120px auto auto 40px;
+    grid-template-rows: 120px 50px minmax(0, 1fr) 50px minmax(0, 1fr) 40px;
   }
 
   &.mobile {
     grid-template-columns: 20px 1fr 20px;
-    grid-template-rows: 80px auto auto 40px;
+    grid-template-rows: 80px 50px minmax(0, 1fr) 50px minmax(0, 1fr) 40px;
   }
 `;
 
@@ -69,11 +72,11 @@ const Title = styled.div`
   text-align: start;
 
   &.tablet {
-    text-align: center;
+    text-align: start;
   }
 
   &.mobile {
-    text-align: center;
+    text-align: start;
   }
 `;
 
@@ -88,16 +91,16 @@ const DestinationNavigation = styled.div`
   height: 100%;
   justify-items: center;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 
   &.tablet {
     grid-column: 2 / 3;
-    grid-row: 3 / 4;
+    grid-row: 4 / 5;
   }
 
   &.mobile {
     grid-column: 2 / 3;
-    grid-row: 3 / 4;
+    grid-row: 4 / 5;
   }
 `;
 
@@ -147,26 +150,36 @@ const DestinationImage = styled.div`
   grid-row: 3 / 5;
   align-self: center;
   justify-self: center;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  height: auto;
 
   img {
-    width: 100%;
-    height: auto;
+    max-height: 100%;
+    max-width: 100%;
   }
 
   &.tablet {
     grid-column: 2 / 3;
     grid-row: 3 / 4;
+    height: 100%;
+    width: auto;
   }
 
   &.mobile {
     grid-column: 2 / 3;
     grid-row: 3 / 4;
+    height: 100%;
+    width: auto;
   }
 `;
 
 const Line = styled.div`
   width: 100%;
   height: 1px;
+  margin: 20px 0px 20px 0px;
   background-color: ${(props) => props.theme.colors.blue};
   opacity: 0.25;
 `;
@@ -179,12 +192,14 @@ const DestinationDetails = styled.div`
 
   &.tablet {
     grid-column: 2 / 3;
-    grid-row: 3 / 4;
+    grid-row: 5 / 6;
+    text-align: center;
   }
 
   &.mobile {
     grid-column: 2 / 3;
-    grid-row: 3 / 4;
+    grid-row: 5 / 6;
+    text-align: center;
   }
 `;
 
@@ -203,16 +218,26 @@ const DestinationDetailsDistance = styled.div`
 
 const Destinations = (): JSX.Element => {
   const { path, url } = useRouteMatch();
+  const isDesktop = useDesktopQuery();
+  const isTablet = useTabletQuery();
+  const isMobile = useMobileQuery();
+  const [className, setClassName] = useState('');
+
+  useEffect(() => {
+    isDesktop && setClassName('');
+    isTablet && setClassName('tablet');
+    isMobile && setClassName('mobile');
+  }, [isDesktop, isTablet, isMobile]);
 
   return (
-    <Background>
-      <Container>
-        <Title>
+    <Background className={className}>
+      <Container className={className}>
+        <Title className={className}>
           <HeadingFive className='span'>01</HeadingFive>
           {'  '}
           <HeadingFour className='span'>Pick your destination</HeadingFour>
         </Title>
-        <DestinationNavigation>
+        <DestinationNavigation className={className}>
           {destinations.map((destination, index) => (
             <InteractiveLink
               key={destination.name}
@@ -222,7 +247,7 @@ const Destinations = (): JSX.Element => {
             </InteractiveLink>
           ))}
         </DestinationNavigation>
-        <DestinationImage>
+        <DestinationImage className={className}>
           <Switch>
             {destinations.map((destination) => (
               <Route key={destination.image} path={`${url}${destination.path}`}>
@@ -231,7 +256,7 @@ const Destinations = (): JSX.Element => {
             ))}
           </Switch>
         </DestinationImage>
-        <DestinationDetails>
+        <DestinationDetails className={className}>
           <Switch>
             {destinations.map((destination) => (
               <Route key={destination.name} path={`${url}${destination.path}`}>
