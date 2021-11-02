@@ -55,6 +55,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 100px 100px 1fr 5px 1fr 100px;
   grid-template-rows: 150px 50px 1fr 40px;
+  grid-gap: 1rem;
 
   &.tablet {
     grid-template-columns: 100px 1fr 100px;
@@ -193,7 +194,7 @@ const TechDetails = styled.div`
   grid-row: 3 / 4;
   align-self: center;
   justify-self: center;
-  margin-left: 2rem;
+  /* margin-left: 2rem; */
 
   &.tablet {
     grid-column: 2 / 3;

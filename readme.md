@@ -20,17 +20,18 @@ This is a submission to the [frontendmentor](https://www.frontendmentor.io/) cha
 
 ## Current issues
 
-- My implementation of top-level Grid squashes the layout comopletely on small viewport heights
+- My implementation of top-level Grid squashes the layout comopletely on small viewport heights.
+- Related to above, images get stretched on mobile devices when you change orientation
 - My implementation of React-Router-DOM second level routes reduces code readability and feels clumpsy
 - Image loading is slow and requires two clicks on mobile (both Safari and Chrome on iOS at least)
 - First page button text has wrong color (blue, should be white)
 
 ## Next steps (in prioritized order)
 
-1. (Fix the Home button text style)
-2. Fix the Grid layout issue that causes height to be squashed
-3. Trouble shoot the image loading issue
-4. Remove implementation of React-Router-DOM for the nested routes and refactor to a local navigation state for the page
+1. (Fix the Home button text style). Done.
+2. Fix the Grid layout issue that causes height to be squashed. Done.
+3. Trouble shoot the image loading issue, and the image stretch issue. Struggling to trouble shoot this one...
+4. Remove implementation of React-Router-DOM for the nested routes and refactor to a local navigation state for the page. Perhaps for later...
 
 ---
 

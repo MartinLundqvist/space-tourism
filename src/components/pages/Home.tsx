@@ -42,6 +42,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 100px 1fr 1fr 100px;
   grid-template-rows: 300px auto 40px;
+  grid-gap: 1rem;
 
   &.tablet {
     grid-template-columns: 100px 1fr 100px;
@@ -91,9 +92,10 @@ const Button = styled.button`
   border-radius: 50%;
   text-transform: uppercase;
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(1rem, 5vw, 32px);
+  font-size: clamp(1.2rem, 4vw, 32px);
+  color: ${(props) => props.theme.colors.dark};
   border: none;
-  box-sizing: content-box;
+  /* box-sizing: content-box; */
   outline: solid 0px black;
   transition: outline 0.3s ease-in-out;
 

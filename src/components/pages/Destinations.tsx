@@ -53,6 +53,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 100px 1fr 100px 1fr 100px;
   grid-template-rows: 150px 50px 50px 1fr 40px;
+  grid-gap: 1rem;
 
   &.tablet {
     grid-template-columns: 100px 1fr 100px;
