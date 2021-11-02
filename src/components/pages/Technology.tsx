@@ -28,10 +28,11 @@ const Background = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100%;
+  width: 100%;
+  overflow-y: scroll;
 
-  background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -57,12 +58,14 @@ const Container = styled.div`
 
   &.tablet {
     grid-template-columns: 100px 1fr 100px;
-    grid-template-rows: 120px 50px minmax(0, 1.1fr) 60px minmax(0, 0.9fr) 40px;
+    grid-template-rows:
+      120px 50px minmax(200px, 1.1fr) 60px minmax(180px, 0.9fr)
+      40px;
   }
 
   &.mobile {
     grid-template-columns: 20px 1fr 20px;
-    grid-template-rows: 80px 50px minmax(0, 1.1fr) 60px minmax(0, 0.9fr) 40px;
+    grid-template-rows: 80px 50px minmax(200px, 1.1fr) 60px minmax(180px, 0.9fr) 40px;
   }
 `;
 
@@ -166,6 +169,7 @@ const TechImage = styled.div`
     img {
       width: 100%;
       height: auto;
+      object-fit: cover;
     }
   }
 
@@ -179,6 +183,7 @@ const TechImage = styled.div`
     img {
       width: 100%;
       height: auto;
+      object-fit: cover;
     }
   }
 `;

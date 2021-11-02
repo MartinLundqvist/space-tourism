@@ -15,10 +15,11 @@ const Background = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100%;
+  width: 100%;
+  overflow-y: scroll;
 
-  background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -36,7 +37,7 @@ const Background = styled.div`
 
 const Container = styled.div`
   position: absolute;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 100px 1fr 1fr 100px;
