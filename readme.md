@@ -2,7 +2,7 @@
 
 This is a submission to the [frontendmentor](https://www.frontendmentor.io/) challenge called [Space Tourism](https://www.frontendmentor.io/challenges/space-tourism-multipage-website-gRWj1URZ3)
 
-The result can be viewed at [lyndenspacetourism.netlify.app](https://lyndenspacetourism.netlify.app/).
+The result can be viewed at [lyndencountries.netlify.app](https://lyndencountries.netlify.app/).
 
 ## Technologies used
 
